@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>一个涂鸦板</title>
+		<link rel="stylesheet" href="css/style.css">
+		<script type="text/javascript" src="js/colorpicker.js"></script>
+	</head>
+	<body>
+		<div class="wxtext">长按屏幕分享</div>
+		<div id="true" title="#000">
+			<canvas id="board" width="300" height="300"></canvas>
+			<div class="star" id="star" data-state="1">
+				<svg id="starfull" class="">
+					<use xlink:href="#icon-starfull"></use>
+				</svg>
+				<svg id="starempty" class="hide">
+					<use xlink:href="#icon-starempty"></use>
+				</svg>
+			</div>
+			<ul id="actions" class="actions">
+				<li>
+					<svg id="clear" class="icon">
+						<use xlink:href="#icon-clear"></use>
+					</svg>
+				</li>
+				<li class="active">
+					<svg id="pen" class="icon">
+						<use xlink:href="#icon-pen"></use>
+					</svg>
+				</li>
+				<li>
+					<svg id="eraser" class="icon">
+						<use xlink:href="#icon-erase"></use>
+					</svg>
+				</li>
+				
+				<li>
+					<svg id="scale" data-screen="0" class="icon">
+						<use xlink:href="#icon-scale"></use>
+						<use xlink:href="#icon-scalein"></use>
+					</svg>
+				</li>
+				<li>
+					<svg id="download" class="icon">
+						<use xlink:href="#icon-save"></use>
+					</svg>
+				</li>
+			</ul>
+			<div class="colorpick">
+				<div class="box">
+					<p></p>
+					<div id="picker"></div>
+					<div id="slide"></div>
+				</div>
+			</div>
+			<script type="text/javascript">
+				ColorPicker(document.getElementById('slide'), document.getElementById('picker'), function(hex, hsv, rgb) {
+					document.getElementById("true").title = hex;
+					context.fillStyle = hex;
+					context.strokeStyle = hex;
+					pen.style = "fill:" + hex;
+					document.getElementById("BrushDot").style.background = hex;
+				});
+			</script>
+			<div class="sizes">
+				<div id="BrushDot"></div>
+				<input type="range" id="brushSize" min="5" max="20" step="1">
+			</div>
+			<div class="eraserSizes">	
+				<p></p>
+				<div id="eraserDot"></div>
+				<input type="range" id="eraserSize" min="10" max="20" step="1">
+			</div>
+			<script type="text/javascript" src="js/main.js"></script>
+	</body>
+
+</html>
